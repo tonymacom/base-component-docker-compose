@@ -6,6 +6,8 @@ services:
       - 9999:9000
     volumes:
       - /home/portainer/data:/data
+    networks:
+      - tonynet-a
     deploy:
       placement:
         constraints: [node.role==manager]
@@ -21,6 +23,12 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=123456
+    networks:
+      - tonynet-a
     deploy:
       placement:
         constraints: [node.role==manager]
+networks:
+  tonynet-a:
+    external:
+      name: tonynet
